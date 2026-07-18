@@ -6,7 +6,7 @@ if(Attendence>=80 and Performance_Rating >= 4):
 else:
     print("Employee is not Eligible for bonus")'''
 
-#2 Program
+#2 Programyre6yhe5h
 '''from operator import index
 
 Correct_Username = "Megha00"
@@ -155,7 +155,7 @@ product_ids = [101, 102, 103, 102, 104, 103, 105]
 unique_product_ids = list(set(product_ids))
 print("Unique Product IDs:", unique_product_ids)"""
 
-#Q18. Travel Cities
+'''#Q18. Travel Cities
 
 cities = ("Delhi", "Mumbai", "Jaipur", "Goa", "Shimla")
 
@@ -245,7 +245,7 @@ set2 = {30, 40, 50, 60, 70}
 common = set1.intersection(set2)
 
 print("Common Elements:")
-print(common)
+print(common)'''
 
 
 '''
@@ -314,8 +314,142 @@ c = CurrentAccount()
 s.withdraw()
 c.withdraw()"""    
  
+'''Question1: Student Management System using Linked List
+*
+Create a Student class and a LinkedList class.
+
+Operations:
+- Add Student
+- Delete Student by ID
+- Search Student
+- Display All Students
+- Count Total Students
+
+solution:'''
+
+class Student:
+    def __init__(self, student_id, name, age):
+        self.student_id = student_id
+        self.name = name
+        self.age=age
+        self.next = None
 
 
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Add Student
+    def add_student(self, student_id, name, age):
+        new_student = Student(student_id, name, age)
+
+        if self.head is None:
+            self.head = new_student
+        else:
+            temp = self.head
+            while temp.next is not None:
+                temp = temp.next
+            temp.next = new_student
+
+        print("Student added successfully.")
+
+    # Delete Student by ID
+    def delete_student(self, student_id):
+        temp = self.head
+        prev = None
+
+        while temp is not None:
+            if temp.student_id == student_id:
+                if prev is None:
+                    self.head = temp.next
+                else:
+                    prev.next = temp.next
+                print("Student deleted successfully.")
+                return
+
+            prev = temp
+            temp = temp.next
+
+        print("Student not found.")
+
+    # Search Student
+    def search_student(self, student_id):
+        temp = self.head
+
+        while temp is not None:
+            if temp.student_id == student_id:
+                print("\nStudent Found")
+                print("ID   :", temp.student_id)
+                print("Name :", temp.name)
+                print("Age  :", temp.age)
+                return
+
+            temp = temp.next
+
+        print("Student not found.")
+
+    # Display All Students
+    def display_students(self):
+        if self.head is None:
+            print("No students available.")
+            return
+
+        temp = self.head
+        print("\nStudent List")
+        while temp is not None:
+            print(f"ID: {temp.student_id}, Name: {temp.name}, Age: {temp.age}")
+            temp = temp.next
+
+    # Count Total Students
+    def count_students(self):
+        count = 0
+        temp = self.head
+
+        while temp is not None:
+            count += 1
+            temp = temp.next
+
+        print("Total Students:", count)
 
 
+# Main Program
+students = LinkedList()
 
+while True:
+    print("\n===== Student Management System =====")
+    print("1. Add Student")
+    print("2. Delete Student")
+    print("3. Search Student")
+    print("4. Display All Students")
+    print("5. Count Total Students")
+    print("6. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        sid = int(input("Enter Student ID: "))
+        name = input("Enter Student Name: ")
+        age = int(input("Enter Student Age: "))
+        students.add_student(sid, name, age)
+
+    elif choice == "2":
+        sid = int(input("Enter Student ID to delete: "))
+        students.delete_student(sid)
+
+    elif choice == "3":
+        sid = int(input("Enter Student ID to search: "))
+        students.search_student(sid)
+
+    elif choice == "4":
+        students.display_students()
+
+    elif choice == "5":
+        students.count_students()
+
+    elif choice == "6":
+        print("Exiting program...")
+        break
+
+    else:
+        print("Invalid choice! Please try again.")
+        
